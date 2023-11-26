@@ -1,0 +1,92 @@
+body {
+    background: white;
+}
+
+.CanvasContainer {
+    border-radius: 1px dashed #7B899B;
+}
+.Toolbar {
+    width: 200px;
+    vertical-align: top;
+    font-family: 'Trebuchet MS'; 
+    font-size: 25px;
+    text-align: right;
+    background: #F2F7FE;
+    padding: 10px 15px 3px 10px;
+    margin-bottom: 1px;
+    margin-right: 1px;
+    border: 1px solid #7B899B;
+    display: inline-block;
+}
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #ff3300; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+
+
+.color-picker {
+    width: 150px;
+    height: 35px;
+}
+
+.Toolbar button {
+    padding: 6px;
+    margin: 7px 2px;
+    font-variant: normal;
+    font-size: 20px;
+}
+
+.CanvasContainer {
+    clear: both;
+    
+    display: inline-block;
+}
+
+canvas {
+    border: 1px solid #7B899B;
+}
+
+.changeColor {
+    padding: 2px;
+    border: 2px solid #F2F7FE;
+}
+
+.changeColor:hover {
+    border: 2px groove #E4F0FE;
+    background: white;
+}
+
+
+.changeColor.Selected {
+    border: 2px groove #E4F0FE;
+}
+
+#savedCopyContainer {
+    display: none;
+}
+
+#savedCopyContainer img {
+    width: 250px;
+    height: 150px;
+}
