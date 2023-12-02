@@ -2,6 +2,7 @@ var canvas;
 var context;
 var previousColorElement;
 var isDrawing;
+var piping = false;
 // Создаем объект изображения
 var img = new Image();
 
@@ -62,21 +63,42 @@ function changeThickness (Element)
 	context.lineWidth = Element.value;
 }
 function startDrawing(e) {
-	// Начинаем рисовать
-	isDrawing = true;
-	
-	// Создаем новый путь (с текущим цветом и толщиной линии) 
-	context.beginPath();
-	
-	// Нажатием левой кнопки мыши помещаем "кисть" на холст
-	context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+	if (!piping) {
+        // Начинаем рисовать
+        isDrawing = true;
+        
+        // Создаем новый путь (с текущим цветом и толщиной линии) 
+        context.beginPath();
+        
+        // Нажатием левой кнопки мыши помещаем "кисть" на холст
+        context.moveTo(e.pageX - canvas.offsetLeft, e.pageY - canvas.offsetTop);
+
+    } else {
+        let x = e.pageX - canvas.offsetLeft;
+		let y = e.pageY - canvas.offsetTop;
+        let imageData = context.getImageData(x, y, 1, 1);
+        let pixel = imageData.data;
+        
+        var dColor = pixel ?
+        (pixel[0] | 1 << 8).toString(16).slice(1) +
+        (pixel[1] | 1 << 8).toString(16).slice(1) +
+        (pixel[2] | 1 << 8).toString(16).slice(1) : pixel;
+        
+        document.getElementById('color').value = '#' + dColor.toString(16);
+        document.getElementById("pipppet").className = "pipe-button";
+        piping = false;
+        context.strokeStyle = '#' + dColor.toString(16);
+
+
+
+    }
 }
 function draw(e) {
 	if (isDrawing == true)
 	{
 	  	// Определяем текущие координаты указателя мыши
-		var x = e.pageX - canvas.offsetLeft;
-		var y = e.pageY - canvas.offsetTop;
+		let x = e.pageX - canvas.offsetLeft;
+		let y = e.pageY - canvas.offsetTop;
 		
 		// Рисуем линию до новой координаты
 		context.lineTo(x, y);
@@ -87,6 +109,7 @@ function stopDrawing() {
     isDrawing = false;	
 }
 function clearCanvas() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
 	context.drawImage(img, 0, 0, canvas.width, canvas.height);
 }
 function getImage(canvas){
@@ -104,7 +127,15 @@ function saveImage(image) {
     link.click();
 }
  
-testDrawing();
+function pipe(e) {
+    if (piping) {
+        e.className = "pipe-button";
+        piping = false;
+    } else {
+        e.className = "pipe-button-activated";
+        piping = true;
+    }
+}
  
 function saveCanvas(){
     var image = getImage(document.getElementById("drawingCanvas"));

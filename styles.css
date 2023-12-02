@@ -62,6 +62,14 @@ body {
     
     display: inline-block;
 }
+.pipe-button-activated {
+    width: 25px;
+    height: 25px;
+    background-image: url('./pipe.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: #7B899B solid 1px;
+}
 
 canvas {
     border: 1px solid #7B899B;
@@ -71,7 +79,21 @@ canvas {
     padding: 2px;
     border: 2px solid #F2F7FE;
 }
-
+.pipe-button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-image: url('./pipe.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.pipe-button:hover {
+    opacity: 0.8;
+  }
+  
+  .pipe-button:active {
+    transform: scale(0.95);
+  }
 .changeColor:hover {
     border: 2px groove #E4F0FE;
     background: white;
