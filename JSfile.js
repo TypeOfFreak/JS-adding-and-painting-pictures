@@ -250,7 +250,7 @@ document.onpaste = function (pasteEvent) {
     clearCanvas();
     // получаем первый элемент содержимого буфера обмена
     const item = pasteEvent.clipboardData.items[0];
-
+    
     // смотрим, является ли элемент изображением
     if (item.type.indexOf("image") === 0) {
 
