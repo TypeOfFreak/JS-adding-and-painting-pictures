@@ -6,17 +6,28 @@ body {
     border-radius: 1px dashed #7B899B;
 }
 .Toolbar {
-    width: 200px;
+    width: 150px;
+    height: 800px;
     vertical-align: top;
     font-family: 'Trebuchet MS'; 
     font-size: 25px;
     text-align: right;
     background: #F2F7FE;
-    padding: 10px 15px 3px 10px;
+    padding: 0 15px 0 10px;
     margin-bottom: 1px;
     margin-right: 1px;
     border: 1px solid #7B899B;
-    display: inline-block;
+    position: fixed;
+    top: 80px;
+    right: 15px;
+}
+.circle-button {
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-image: url('./circle.png');
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .slider {
     -webkit-appearance: none;  /* Override default CSS styles */
@@ -62,14 +73,6 @@ body {
     
     display: inline-block;
 }
-.pipe-button-activated {
-    width: 25px;
-    height: 25px;
-    background-image: url('./pipe.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    border: #7B899B solid 1px;
-}
 
 canvas {
     border: 1px solid #7B899B;
@@ -111,4 +114,24 @@ canvas {
 #savedCopyContainer img {
     width: 250px;
     height: 150px;
+}
+
+.rect-button {    
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-image: url('./rect.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.line-button {    
+    width: 25px;
+    height: 25px;
+    border: none;
+    background-image: url('./line.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+.activated {
+    border: #7B899B solid 2px;
 }

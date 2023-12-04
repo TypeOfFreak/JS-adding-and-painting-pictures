@@ -2,18 +2,18 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>HTML5 Canvas</title>
+<title>Editor</title>
 <link rel="stylesheet" href="./styles.css">
 <script src = 'JSfile.js'> </script>
 </head>
 <body>
-   <h1>Super editor</h1>
+   <h1>Omega editor</h1>
 <div class="CanvasContainer">
-      <canvas id="drawingCanvas" width = 1200px height = 800px></canvas>
+      <canvas id="drawingCanvas" width = 1700px height = 800px></canvas>
 </div>
 <div class="Toolbar">
    <label for="color">Цвет</label><br>
-   <input class = "color-picker" type="color" id="color" name="color" value="#000000" oninput="changeColor(this)"/><br>
+   <input class = "color-picker" type="color" id="color" name="color" value="#777777" oninput="changeColor(this)"/><br>
    <label for="Thickness">Толщина</label> <br>
    <input class = "slider" id = "Thickness" type="range" min="2" max="25" step="0.2" id="size" oninput="changeThickness(this)" value="5"><br>
    <button onclick="saveCanvas()">Save</button>
@@ -22,8 +22,14 @@
       <img id="savedImageCopy"><br>
       Щелкните правой кнопкой мыши для сохранения ...
    </div> <br>
-   <button class = "pipe-button" id = "pipppet" onclick = "pipe(this)"></button> <br>
-   <label for="Image">Picture </label> <br>
+   <button class = "pipe-button" id = "pipppet" onclick = "pipe(this)"></button> 
+   <button class = "circle-button" id = 'circle' onclick="addCircle(this)"></button> <br>
+   <button class = "rect-button" id = 'rect' onclick="addRect(this)"></button> 
+   <button class = "line-button" id = 'line' onclick="addStrLine(this)"></button> <br>
+   <button class = "text-button" id = 'TEXT' onclick="addText(this)">TEXT</button><br>
+   <button class = "fill-button" id = 'fill' onclick="fill(this)">NOT FILL</button>
+   <br>
+   <label for="Image">Picture </label> 
    <input type="file" id = "Image" accept = "image/*" oninput="addImage()">
 </div>
 </body>
