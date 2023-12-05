@@ -132,6 +132,30 @@ canvas {
     background-size: contain;
     background-repeat: no-repeat;
 }
+
+.files-history {
+        width:150px;
+        height: 270px;
+        background: rgb(223, 228, 235);
+        overflow-y: auto; 
+        font: 7px;
+        text-align: left;
+        padding: 5px;
+
+}
+
+.submitLink {
+    background-color: transparent;
+    text-decoration: underline;
+    border: none;
+    color: blue;
+    text-align: left;
+    cursor: pointer;
+  }
+.submitLink:focus {
+    outline: none;
+  }
+
 .activated {
     border: #7B899B solid 2px;
 }

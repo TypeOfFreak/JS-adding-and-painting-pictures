@@ -9,7 +9,6 @@ var circles = [], rectangles = [], texts = [];
 var figures = [];
 var new_line, new_circle, new_rect, new_straight_line, new_text;
 var fill_figure;
-
 class Figure {
     constructor() {}
     Draw() {}
@@ -81,9 +80,12 @@ class Straight_line extends Figure{
         this.x1 = x1;
         this.y0 = y0;
         this.y1 = y1;
+        this.thickness = document.getElementById('Thickness').value;
         this.color = document.getElementById('color').value;
     }
     Draw() {
+        context.lineWidth = this.thickness;
+        context.color = this.color;
         context.beginPath();
         context.moveTo(this.x0, this.y0 );
         context.lineTo(this.x1, this.y1);
@@ -211,18 +213,40 @@ function DrawImage(img) {
 }
 
 function addImage() {
+    let saved = false;
     clearCanvas();
     document.getElementById('Image').addEventListener('change', function() {
         if (this.files && this.files[0]) {
             var reader = new FileReader();
-              reader.onload = function (e) {
+            reader.onload = function (e) {
                 img.src =  e.target.result;
+                if (!saved) {
+                    SaveIntoHistory(e.target.result, document.getElementById('Image').value.replace('C:\\fakepath\\', ""));
+                    saved = true;
+                    console.log( document.getElementById('Image').value.replace('C:\\fakepath\\', ""));
+                }
             };
             reader.readAsDataURL(this.files[0]);
           }
         
         });
 }
+
+function SaveIntoHistory(href, name) {
+    let btn = document.createElement('button');
+    let br = document.createElement('br');
+    btn.addEventListener("click", DrawImageFromHistory, false);
+    btn.innerHTML = name;
+    btn.img_src = href;
+    btn.className = "submitLink";
+    FileHistory.append(btn);
+    FileHistory.append(br);
+}
+
+function DrawImageFromHistory(evt) {
+    clearCanvas();
+    img.src = evt.currentTarget.img_src;
+}   
 function DrawFigures () {
     // Очистить холст
     context.clearRect(0, 0, canvas.width, canvas.height);
@@ -250,7 +274,7 @@ document.onpaste = function (pasteEvent) {
     clearCanvas();
     // получаем первый элемент содержимого буфера обмена
     const item = pasteEvent.clipboardData.items[0];
-    
+
     // смотрим, является ли элемент изображением
     if (item.type.indexOf("image") === 0) {
 
